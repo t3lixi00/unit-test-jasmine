@@ -26,7 +26,7 @@ describe('insertDashes()', () => {
 
 /**
  * Exercise 2 test Group
- * tip: each class has name
+ * tip: each class has name property
  * if test pass, it shows 'User class'
  * */
 class User {
@@ -37,7 +37,7 @@ class User {
     constructor(data = {}){
         this.firstName = data.firstName || '';
         this.lastName = data.lastName || '';
-        this.middleName = data.middleName;
+        this.middleName = data.middleName || '';
     }
 }
 
@@ -46,4 +46,72 @@ class User {
  * */
 describe(`${User.name} class`, ()=> {
 
+});
+
+/**
+ * Exercise 3
+ * How to test this class
+ */
+// Unit Testing: Our first test with it
+
+describe('User', ()=> {
+    it('Expect firstName wont break', () => {
+        // arrange
+        const data = { firstName: null };
+
+        // act
+        const model = new User(data);
+
+        // assert
+        expect(model.firstName).toBe('');
+    })
+
+    it('Expect lastName wont break', () => {
+        // arrange
+        const data = { lastName: 'test' };
+
+        // act
+        const model = new User(data);
+
+        // assert
+        expect(model.lastName).toBe('test');
+    })
+})
+
+// Test Suite
+describe(`${User.name} Class`, () => {
+    describe('default values', () => {
+        it('first name defaults to empty', () => {
+            // arrange
+            const data = { firstName: null };
+
+            // act
+            const model = new User(data);
+
+            // assert
+            expect(model.firstName).toBe('');
+        });
+
+        it('last name defaults to empty', () => {
+            // arrange
+            const data = { lastName: null };
+
+            // act
+            const model = new User(data);
+
+            // assert
+            expect(model.lastName).toBe('');
+        });
+
+        it('middle name defaults to empty', () => {
+            // arrange
+            const data = { middleName: null };
+
+            // act
+            const model = new User(data);
+
+            // assert
+            expect(model.middleName).toBe('');
+        });
+    });
 });
